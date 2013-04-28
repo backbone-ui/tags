@@ -1,0 +1,10 @@
+{
+  "name": "backbone.ui.tags",
+  "version": "0.0.1",
+  "main": ["./assets/js/backbone.ui.tags.js"],
+  "dependencies": { 
+	  "backbone" : "1.0.0", 
+	  "underscore" : "1.4.4", 
+	  "jquery" : "2.0.0"
+  }
+}
