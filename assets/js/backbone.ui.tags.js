@@ -17,7 +17,10 @@
 	Backbone.UI.Tags = View.extend({
         
         options: {
-            editable : false
+            editable : false,
+            fieldName: false,
+            tagTemplate: false,
+            fieldDelimiter: "|" 
         }, 
         
 		events : {
@@ -32,23 +35,30 @@
             if( options.data instanceof Array ){
                 this.data = new Tags( options.data );
             }
-            
+            // import data from field 
+            if( options.fieldName ){
+                this.parseField();
+            }
             return View.prototype.initialize.call( this, options );
 		}, 
-        
+        /*
         render: function(){
             
             console.log( this.data.toJSON() );
 			
         },
-        
+        */
 		addTag: function( label ){
 			//var template = this.views.tag;
             if( this.data ){ 
                 this.data.add( new Tag( label ) );
             }
-			//$(template).find(".label").html( label ).closest(".tag").prependTo(this.el);
-            this.render();
+            this.updateField();
+            
+            if( this.options.tagTemplate ){ 
+                var template = this.options.tagTemplate;
+                $(template).find(".label").html( label ).closest(".tag").prependTo(this.el);
+            }
 		}, 
         
 		delTag: function( e ){
@@ -71,8 +81,6 @@
 					this.addTag( tag );
 					// reset input
 					$(e.target).val("");
-					// update data
-					this.updateField();
 					// prevent form submission
 					return false;
 			}
@@ -83,14 +91,29 @@
 			return string.replace(/http:\/\/|https:\/\/|www./gi, "");
 		}, 
         
+        save: function(){
+           // update data
+					this.updateField();
+					 
+        }, 
+        
+        parseField: function(){
+            this.$field = $(this.options.fieldName);
+            var tags = this.$field.val() || false;
+			if(!tags || _.isEmpty(tags)) return;
+            var dl = this.options.fieldDelimiter;
+            this.data = new Tags( tags.split( dl ) );
+        }, 
+        
 		updateField: function(){
 			if( !this.$field ) return;
-			var tags = [];
-			$(this.el).find(".tag").each(function(){
-				tags.push( $(this).find(".label").html() );
-			});
+			//var tags = [];
+			//$(this.el).find(".tag").each(function(){
+			//	tags.push( $(this).find(".label").html() );
+			//});
 			// make a string from the tags
-			var value = tags.join("|");
+            var dl = this.options.fieldDelimiter;
+			var value = this.data.toJSON().join( dl );
 			// update input (hidden) field
 			this.$field.val( value );
 			
