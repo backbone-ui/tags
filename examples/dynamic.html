@@ -4,7 +4,7 @@
     <title>Image preview with tags</title>
     
     <!-- Base styles -->
-    <link rel="stylesheet" href="../css/backbone.ui.tags.css">
+    <link rel="stylesheet" href="../assets/css/backbone.ui.tags.css">
     
     <style type="text/css">
 	* {
@@ -22,29 +22,32 @@
 	</script>
 </head>
 <body>
-    
-<img src="http://farm9.staticflickr.com/8356/8404884161_f1d3efe9d6_b.jpg">
 
-<div id="tags" class="ui-tags"></div>
+<p>This example has dunamic tags coming is as an array. We're using <a href="http://handlebarsjs.com/">Handlebars.js</a> for the template and <a href="https://github.com/makesites/backbone-app">Backbone APP</a> which automates parsing the external html fragment.</p>
+    
+<ul id="tags" class="ui-tags"></ul>
 
 <!-- Dependencies -->
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/json3/3.2.4/json3.min.js"></script> 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script> 
 <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
 <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script> 
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0-rc.3/handlebars.min.js"></script> 
+<script type="text/javascript" src="http://rawgithub.com/makesites/backbone-app/master/build/backbone.app-min.js"></script> 
 
 <!-- Extension lib -->
-<script type="text/javascript" src="../js/backbone.ui.tags.js"></script> 
+<script type="text/javascript" src="../assets/js/backbone.ui.tags.js"></script> 
 
 <script type="text/javascript">
-	_.templateSettings.variable = "tags";
-	
+
 	// LOGIC
 	var view = new Backbone.UI.Tags({
 			el : "#tags", 
-			collection : new Backbone.Collection(tags)
+            editable: true, 
+			data : tags,
+            url: "../assets/html/tags.html"
 	});
-	view.render();
+    
 </script>
 
 </body>
