@@ -15,10 +15,16 @@
     
 	// APP editing
 	Backbone.UI.Tags = View.extend({
+        
+        options: {
+            editable : false
+        }, 
+        
 		events : {
 			"click .tag a .del" : "delTag",
 			"keydown .tag-new input" : "newTag"
 		},
+        
 		initialize: function( options ){
 			//fallbacks
 			options || (options = {});
@@ -33,6 +39,7 @@
 			this.render();
 			//return APP.View.prototype.initialize.apply( this, options );
 		}, 
+        
 		render: function(){
 			if( !this.$field ) return;
 			// get the tags from the input field
@@ -46,10 +53,12 @@
 				this.addTag( tags[i] );
 			}
 		}, 
+        
 		addTag: function( label ){
 			var template = this.views.tag;
 			$(template).find(".label").html( label ).closest(".tag").prependTo(this.el);
 		}, 
+        
 		delTag: function( e ){
 			e.preventDefault();
 			// find tag
@@ -59,6 +68,7 @@
 			// update input field
 			this.updateField();
 		}, 
+        
 		newTag: function( e ){
 			var code = e.keyCode || e.which; 
   			if(code == 13 || code == 9 || code == 188){
@@ -75,10 +85,12 @@
 					return false;
 			}
 		}, 
+        
 		cleanTag: function( string ){
 			// custom method to filter out tag
 			return string.replace(/http:\/\/|https:\/\/|www./gi, "");
 		}, 
+        
 		updateField: function(){
 			if( !this.$field ) return;
 			var tags = [];
