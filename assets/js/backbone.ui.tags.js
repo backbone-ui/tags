@@ -24,35 +24,34 @@
         }, 
         
 		events : {
-			"click .tag a .del" : "delTag",
-			"keydown .tag-new input" : "newTag"
+			"click .tag a .del" : "_delTag",
+			"keydown .tag-new input" : "_newTag"
 		},
         
 		initialize: function( options ){
             // 
-			_.bindAll( this, 'render', 'addTag', 'delTag', 'newTag', 'cleanTag', 'updateField');
+			_.bindAll( this, 'render', '_addTag', '_delTag', '_newTag', '_cleanTag', '_parseField', '_updateField');
 			// check if the data passed is a "static" array
             if( options.data instanceof Array ){
                 this.data = new Tags( options.data, this.options );
             }
             // import data from field 
             if( options.fieldName ){
-                this.parseField();
+                this._parseField();
             }
             
             return View.prototype.initialize.call( this, options );
 		}, 
         
-		addTag: function( label ){
+		_addTag: function( label ){
 			//var template = this.views.tag;
             if( this.data ){ 
                 this.data.add( new Tag({ id: label, editable: this.options.editable }) );
             }
-            this.updateField();
-            this.render();
+            this._updateField();
 		}, 
         
-		delTag: function( e ){
+		_delTag: function( e ){
 			e.preventDefault();
 			// find tag
 			var tag = $(e.target).closest(".tag");
@@ -64,17 +63,17 @@
                 this.data.remove( id );
             }
             // update input field
-			this.updateField();
+			this._updateField();
 		}, 
         
-		newTag: function( e ){
+		_newTag: function( e ){
 			var code = e.keyCode || e.which; 
   			if(code == 13 || code == 9 || code == 188){
 					// prevent form submission
 					e.preventDefault();
 					// get tag string
-					var tag = this.cleanTag( $(e.target).val() );
-					this.addTag( tag );
+					var tag = this._cleanTag( $(e.target).val() );
+					this._addTag( tag );
 					// reset input
                     $(e.target).val("");
 					// prevent form submission
@@ -82,12 +81,12 @@
 			}
 		}, 
         
-		cleanTag: function( string ){
+		_cleanTag: function( string ){
 			// custom method to filter out tag
 			return string.replace(/http:\/\/|https:\/\/|www./gi, "");
 		}, 
         
-        parseField: function(){
+        _parseField: function(){
             this.$field = $(this.options.fieldName);
             var tags = this.$field.val() || false;
 			if(!tags || _.isEmpty(tags)) return;
@@ -100,7 +99,7 @@
             }
         }, 
         
-		updateField: function(){
+		_updateField: function(){
 			if( !this.$field ) return;
 			//var tags = [];
 			//$(this.el).find(".tag").each(function(){
@@ -108,8 +107,7 @@
 			//});
 			// make a string from the tags
             var dl = this.options.fieldDelimiter;
-            console.log( this.data.toArray() );
-			var value = this.data.toArray().join( dl );
+            var value = this.data.toArray().join( dl );
 			// update input (hidden) field
 			this.$field.val( value );
 			
@@ -185,7 +183,7 @@
 			// reverse the order so they are added in the right order :P
 			//tags.reverse();
 			//for(var i in tags){
-			//	this.addTag( tags[i] );
+			//	this._addTag( tags[i] );
 			//}
             console.log( data );
 		} 
