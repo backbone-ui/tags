@@ -107,7 +107,7 @@
 			//});
 			// make a string from the tags
             var dl = this.options.fieldDelimiter;
-            var value = this.data.toArray().join( dl );
+            var value = this.data.output().join( dl );
 			// update input (hidden) field
 			this.$field.val( value );
 			
@@ -170,6 +170,9 @@
             return Backbone.Collection.prototype.add.call( this, data, options );
         },
         
+        output: function(){
+            return this.toArray();
+        }
         /*
 		parse: function( data ){
             console.log( this.options );
