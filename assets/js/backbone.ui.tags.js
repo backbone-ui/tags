@@ -43,6 +43,17 @@
             return View.prototype.initialize.call( this, options );
 		}, 
         
+        // set the editable state
+        editable: function( flag ){
+            if( typeof flag == "undefined" ) flag = true;
+            console.log( flag );
+            this.options.editable = flag;
+            this.data.options.editable = flag;
+            //re-render
+            this.render();
+        }, 
+        
+        // Private methods
 		_addTag: function( label ){
 			//var template = this.views.tag;
             if( this.data ){ 
