@@ -46,11 +46,15 @@
         // set the editable state
         editable: function( flag ){
             if( typeof flag == "undefined" ) flag = true;
-            console.log( flag );
             this.options.editable = flag;
             this.data.options.editable = flag;
             //re-render
             this.render();
+        }, 
+        
+        // optionally call this after a render to retrieve focus
+        focus: function(){
+            $(this.el).find(".tag-new input").focus();
         }, 
         
         // Private methods
