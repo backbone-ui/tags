@@ -1,6 +1,8 @@
-{{#each .}}
-<li class="tag"><a><span class="label">{{id}}</span>{{#if editable}}<span class="del">×</span>{{/if}}</a></li>
+{{#each tags}}
+<li class="tag"><a><span class="label">{{id}}</span>{{#if ../options.editable}}<span class="del">×</span>{{/if}}</a></li>
 {{/each}}
+{{#if options.editable}}
 <li class="tag-new">
     <input type="text" class="" autocomplete="off" role="textbox">
 </li>
+{{/if}}

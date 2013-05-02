@@ -46,7 +46,7 @@
 		_addTag: function( label ){
 			//var template = this.views.tag;
             if( this.data ){ 
-                this.data.add( new Tag({ id: label, editable: this.options.editable }) );
+                this.data.add( new Tag({ id: label }) );
             }
             this._updateField();
 		}, 
@@ -136,16 +136,14 @@
             // set options
             this.options.editable = options.editable || false; 
         }, 
-        /*
+        
         toJSON: function(){
-            var self = this;
-            return _.map( this.models, function( tag ) {
-                // return the first (an only) key from each tag
-                return { id : tag.keys()[0], editable : self.options.editable };
-            });
-            
+            //include options with the tags
+            return {
+                tags : _.map( this.models, function(tag){ return { id : tag.id }; }),
+                options : this.options
+            }
         },
-        */
         
         // revert back to the array format when needed
         toArray: function(){
@@ -163,7 +161,7 @@
                 // it is expected that each item is an object
                 for( var i in data ){
                    if(typeof data[i] == "string"){
-                       data[i] = new Tag({ id : data[i], editable : this.options.editable });   
+                       data[i] = new Tag({ id : data[i] });   
                    }
                 }
             }
