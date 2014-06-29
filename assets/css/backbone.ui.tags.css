@@ -1,5 +1,6 @@
 .ui-tags li{float:left;}
 .ui-tags li a{width:auto;height:auto;background:#999999;display:inline-block;padding:0px 5px;color:#ffffff;text-decoration:none;border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;position:relative;cursor:pointer;text-align:center;font-weight:normal;font-size:.9em;line-height:200%;margin:5px;}
 .ui-tags li a:hover{background:#666666;color:#ffffff;}
+.ui-tags li a:first-child { margin-left: 0 }
 .ui-tags li.tag .label{margin-right:8px;}
 .ui-tags li.tag-new input{margin:2px;background-color:#fff;}
