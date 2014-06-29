@@ -40,6 +40,8 @@
 			if( options.data instanceof Array ){
 				this.data = new Tags( options.data, this.options );
 			}
+			// add the component class to the element (move this to render?)
+			$(this.el).addClass("ui-tags");
 
 			// import data from field
 			if( options.fieldName ){
