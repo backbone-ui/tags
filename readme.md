@@ -42,7 +42,9 @@ A more detailed list of all the available options.
 
 ## Examples 
 
-* [Image](http://rawgithub.com/backbone-ui/tags/master/examples/image.html)
+* [Static](http://rawgithub.com/backbone-ui/tags/master/examples/static.html)
+* [Dynamic data](http://rawgithub.com/backbone-ui/tags/master/examples/dynamic.html)
+* [Data from field](http://rawgithub.com/backbone-ui/tags/master/examples/field.html)
 
 
 ## Credits
