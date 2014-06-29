@@ -1,12 +1,12 @@
 <!doctype html>
 <html>
 <head>
-    <title>Image preview with tags</title>
-    
-    <!-- Base styles -->
-    <link rel="stylesheet" href="../assets/css/backbone.ui.tags.css">
-    
-    <style type="text/css">
+	<title>Image preview with tags</title>
+
+	<!-- Base styles -->
+	<link rel="stylesheet" href="../assets/css/backbone.ui.tags.css">
+
+	<style type="text/css">
 	* {
 		margin: 0;
 		padding: 0;
@@ -15,43 +15,43 @@
 		width: 100%;
 		height: 100%;
 	}
-    </style>
-    
+	</style>
+
 </head>
 <body>
 
 <p>This is an extension of the dynamic example, but this time the data is coming in from an hidden input field. The input field is updated in realtime, as we update the tags.</p>
-    
+
 <input id="input-tags" type="hidden" value="landscape|nature|farm|january|lake">
 <ul id="tags" class="ui-tags">
 <li class="tag-new">
-    <input type="text" class="" autocomplete="off" role="textbox">
-</li>    
+	<input type="text" class="" autocomplete="off" role="textbox">
+</li>
 </ul>
 
 
 <!-- Dependencies -->
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/json3/3.2.4/json3.min.js"></script> 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script> 
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/json3/3.2.4/json3.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
-<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script> 
-<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0-rc.3/handlebars.min.js"></script> 
-<script type="text/javascript" src="http://rawgithub.com/makesites/backbone-app/master/build/backbone.app-min.js"></script> 
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script>
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0-rc.3/handlebars.min.js"></script>
+<script type="text/javascript" src="http://rawgithub.com/makesites/backbone-app/master/build/backbone.app-min.js"></script>
 
 <!-- Extension lib -->
-<script type="text/javascript" src="../assets/js/backbone.ui.tags.js"></script> 
+<script type="text/javascript" src="../assets/js/backbone.ui.tags.js"></script>
 
 <script type="text/javascript">
-	
+
 	// LOGIC
 	var view = new Backbone.UI.Tags({
-        el : "#tags", 
-        editable: true,
-        fieldName: "#input-tags",
-        url: "../assets/html/tags.html"
+		el : "#tags",
+		editable: true,
+		fieldName: "#input-tags",
+		url: "../assets/html/tags.html"
 	});
-    
-    view.render();
+
+	view.render();
 
 </script>
 
