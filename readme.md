@@ -5,7 +5,7 @@ A tags component for any webpage
 
 ## Install
 
-Using bower: 
+Using bower:
 ```
 bower install backbone.ui.tags
 ```
@@ -22,17 +22,17 @@ bower install backbone.ui.tags
 
 ```
 var view = new Backbone.UI.Tags({
-		el : "#tags", 
+		el : "#tags",
 		collection : new Backbone.Collection(tags)
 });
 view.render();
 ```
-By default the html fragment will be parsed by the underscore's micro-template engine.  You are free to use any template engine by using the ```template``` option as described below. 
+By default the html fragment will be parsed by the underscore's micro-template engine.  You are free to use any template engine by using the ```template``` option as described below.
 
 
 ## Options
 
-A more detailed list of all the available options. 
+A more detailed list of all the available options.
 
 * ***collection***: the data for the tags
 * ***url***: the url of an html fragment
@@ -40,7 +40,7 @@ A more detailed list of all the available options.
 * ***template***: A template method to parse the html fragment
 
 
-## Examples 
+## Examples
 
 * [Static](http://rawgithub.com/backbone-ui/tags/master/examples/static.html)
 * [Dynamic data](http://rawgithub.com/backbone-ui/tags/master/examples/dynamic.html)
@@ -49,7 +49,7 @@ A more detailed list of all the available options.
 
 ## Credits
 
-Created by Makis Tracend ( [@tracend](http://github.com/tracend) )
+Initiated by Makis Tracend ( [@tracend](http://github.com/tracend) )
 
 Distributed through [Makesites.org](http://makesites.org/)
 
