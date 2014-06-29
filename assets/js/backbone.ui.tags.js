@@ -31,10 +31,16 @@
 		initialize: function( options ){
 			//
 			_.bindAll( this, 'render', '_addTag', '_delTag', '_newTag', '_cleanTag', '_parseField', '_updateField');
+			// check if the data passed is a "rasterized" string
+			if( options.data instanceof String ){
+				// split the data to an array
+				options.data = options.data.split(  this.options.fieldDelimiter );
+			}
 			// check if the data passed is a "static" array
 			if( options.data instanceof Array ){
 				this.data = new Tags( options.data, this.options );
 			}
+
 			// import data from field
 			if( options.fieldName ){
 				this._parseField();
