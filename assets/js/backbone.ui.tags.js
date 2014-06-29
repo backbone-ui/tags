@@ -32,7 +32,7 @@
 			//
 			_.bindAll( this, 'render', '_addTag', '_delTag', '_newTag', '_cleanTag', '_parseField', '_updateField');
 			// check if the data passed is a "rasterized" string
-			if( options.data instanceof String ){
+			if( typeof options.data == "string" ){
 				// split the data to an array
 				options.data = options.data.split(  this.options.fieldDelimiter );
 			}
