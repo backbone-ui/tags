@@ -1,12 +1,30 @@
-// Backbone.js Tags extension
-//
-// Created by: Makis Tracend (@tracend)
-// Source: https://github.com/backbone-ui/tags
-//
-// Licensed under the MIT license:
-// http://makesites.org/licenses/MIT
+/*
+ * Backbone UI: Tags
+ * Source: https://github.com/backbone-ui/tags
+ * Copyright © Makesites.org
+ *
+ * Initiated by Makis Tracend (@tracend)
+ * Distributed through [Makesites.org](http://makesites.org)
+ * Released under the [MIT license](http://makesites.org/licenses/MIT)
+ */
 
-(function(_, Backbone) {
+(function (lib) {
+
+	//"use strict";
+
+	// Support module loaders
+	if (typeof define === 'function' && define.amd) {
+		// AMD. Register as an anonymous module.
+		define(['jquery', 'underscore', 'backbone'], lib);
+	} else if ( typeof module === "object" && module && typeof module.exports === "object" ){
+		// Expose as module.exports in loaders that implement CommonJS module pattern.
+		module.exports = lib;
+	} else {
+		// Browser globals
+		lib(window.jQuery, window._, window.Backbone);
+	}
+
+}(function ($, _, Backbone) {
 
 	// fallbacks
 	if( _.isUndefined( Backbone.UI ) ) Backbone.UI = {};
@@ -214,4 +232,4 @@
 		*/
 	});
 
-})(this._, this.Backbone);
+}));
