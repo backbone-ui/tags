@@ -32,7 +32,7 @@
 
 
 	// Views
-	var Tags = View.extend({
+	var TagsView = View.extend({
 
 		options: {
 			editable : false,
@@ -47,6 +47,9 @@
 		},
 
 		initialize: function( options ){
+			// fallbacks
+			options = options || {};
+			this.options = _.extend(this.options, options);
 			//
 			_.bindAll( this, 'render', '_addTag', '_delTag', '_newTag', '_cleanTag', '_parseField', '_updateField');
 			// check if the data passed is a "rasterized" string
@@ -55,14 +58,14 @@
 				options.data = options.data.split(  this.options.fieldDelimiter );
 			}
 			// check if the data passed is a "static" array
-			if( options.data instanceof Array ){
-				this.data = new Tags( options.data, this.options );
-			}
+			var data = ( options.data instanceof Array ) ? options.data : [];
+			this.data = new Tags( data, this.options );
+
 			// add the component class to the element (move this to render?)
 			$(this.el).addClass("ui-tags");
 
 			// import data from field
-			if( options.fieldName ){
+			if( this.options.fieldName ){
 				this._parseField();
 			}
 
@@ -86,7 +89,7 @@
 		// Private methods
 		_addTag: function( label ){
 			//var template = this.views.tag;
-			if( this.data ){
+			if( this.data ){ // trivial check?
 				this.data.add( new Tag({ id: label }) );
 			}
 			this._updateField();
@@ -234,10 +237,10 @@
 
 	// update Backbone namespace
 	Backbone.UI = Backbone.UI ||{};
-	Backbone.UI.Tags = Tags;
+	Backbone.UI.Tags = TagsView;
 	if( isAPP ){
 		APP.UI = APP.UI || {};
-		APP.UI.Tags = Tags;
+		APP.UI.Tags = TagsView;
 	}
 
 	// extend global namespace (hide behind setting?)
@@ -250,6 +253,6 @@
 	}
 
 	// for module loaders:
-	return Tags;
+	return TagsView;
 
 }));
