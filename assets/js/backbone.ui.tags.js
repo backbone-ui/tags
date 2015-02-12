@@ -26,13 +26,13 @@
 
 }(function ($, _, Backbone) {
 
-	// fallbacks
-	if( _.isUndefined( Backbone.UI ) ) Backbone.UI = {};
-	// Support backbone app (if available)
-	var View = ( typeof APP != "undefined" && !_.isUndefined( APP.View) ) ? APP.View : Backbone.View;
+	// support for Backbone APP() view if available...
+	var isAPP = ( typeof APP !== "undefined" );
+	var View = ( isAPP && typeof APP.View !== "undefined" ) ? APP.View : Backbone.View;
+
 
 	// Views
-	Backbone.UI.Tags = View.extend({
+	var Tags = View.extend({
 
 		options: {
 			editable : false,
@@ -231,5 +231,25 @@
 		}
 		*/
 	});
+
+	// update Backbone namespace
+	Backbone.UI = Backbone.UI ||{};
+	Backbone.UI.Tags = Tags;
+	if( isAPP ){
+		APP.UI = APP.UI || {};
+		APP.UI.Tags = Tags;
+	}
+
+	// extend global namespace (hide behind setting?)
+	if ( typeof window === "object" && typeof window.document === "object" ) {
+		// update APP namespace
+		if( isAPP ){
+			window.APP = APP;
+		}
+		window.Backbone = Backbone;
+	}
+
+	// for module loaders:
+	return Tags;
 
 }));
